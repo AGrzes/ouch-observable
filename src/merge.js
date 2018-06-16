@@ -1,5 +1,3 @@
-const debug = require('debug')('ouch-rx.sink')
-const {Observable} = require ('rxjs')
 const {flatMap} = require ('rxjs/operators')
 module.exports.merge = (db, f) => (source) => source.pipe(flatMap((object) => {
   const document = f(object)
