@@ -21,5 +21,11 @@
   "bugs": {
     "url": "https://github.com/AGrzes/ouch-rx/issues"
   },
-  "homepage": "https://github.com/AGrzes/ouch-rx#readme"
+  "homepage": "https://github.com/AGrzes/ouch-rx#readme",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "coveralls": "^3.0.1",
+    "mocha": "^5.2.0",
+    "nyc": "^12.0.2"
+  }
 }
