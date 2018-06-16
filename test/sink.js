@@ -1,6 +1,6 @@
 const expect = require('chai').use(require('sinon-chai')).expect
 const sinon = require('sinon')
-const {Sink} = require('../src/sink')
+const {sink} = require('../src/sink')
 const rx = require('rxjs')
 describe('Ouch', function () {
   describe('#sink()', function () {
@@ -8,46 +8,41 @@ describe('Ouch', function () {
       var db = {
         put: sinon.spy(() => Promise.resolve(null))
       }
-      const subject = new rx.Subject()
-      subject.subscribe(new Sink(db))
-      subject.subscribe({
+      rx.of('a').pipe(sink(db)).subscribe({
         complete() {
           expect(db.put).to.have.been.called
           done()
-        }
+        },
+        error: done
       })
-      rx.of('a').subscribe(subject)
     })
     it('should pass items to put', function (done) {
       var db = {
         put: sinon.spy(() => Promise.resolve(null))
       }
-      const subject = new rx.Subject()
-      subject.subscribe(new Sink(db))
-      subject.subscribe({
+      rx.of('a', 'b').pipe(sink(db)).subscribe({
         complete() {
           expect(db.put).to.have.been.calledWith('a')
           expect(db.put).to.have.been.calledWith('b')
           done()
-        }
+        },
+        error: done
       })
-      rx.of('a','b').subscribe(subject)
     })
     it('should continue when put failed', function (done) {
       var error = new Error()
       var db = {
         put: sinon.spy(() => Promise.reject(error))
       }
-      const subject = new rx.Subject()
-      subject.subscribe(new Sink(db))
-      subject.subscribe({
-        complete() {
-          expect(db.put).to.have.been.calledWith('a')
-          expect(db.put).to.have.been.calledWith('b')
+      rx.of('a', 'b').pipe(sink(db)).subscribe({
+        error(err) {
+          expect(err).to.be.equal(error)
           done()
+        },
+        complete(){
+          expect.fail()
         }
       })
-      rx.of('a','b').subscribe(subject)
     })
   })
 })
