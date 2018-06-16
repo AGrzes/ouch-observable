@@ -1,0 +1,25 @@
+{
+  "name": "ouch-rx",
+  "version": "0.0.1",
+  "description": "Reactive wrapper for pouchdb",
+  "main": "index.js",
+  "scripts": {
+    "test": "nyc --reporter=html --reporter=text mocha --recursive"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AGrzes/ouch-rx.git"
+  },
+  "keywords": [
+    "rx",
+    "reactive",
+    "pouchdb",
+    "couchdb"
+  ],
+  "author": "Grzegorz Abramczyk <abramczykg@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AGrzes/ouch-rx/issues"
+  },
+  "homepage": "https://github.com/AGrzes/ouch-rx#readme"
+}
