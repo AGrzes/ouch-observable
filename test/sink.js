@@ -1,7 +1,7 @@
-var expect = require('chai').use(require('sinon-chai')).expect
-var sinon = require('sinon')
-var Sink = require('../src/sink').Sink
-var rx = require('rxjs')
+const expect = require('chai').use(require('sinon-chai')).expect
+const sinon = require('sinon')
+const {Sink} = require('../src/sink')
+const rx = require('rxjs')
 describe('Ouch', function () {
   describe('#sink()', function () {
     it('should call put', function (done) {
