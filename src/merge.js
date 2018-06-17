@@ -1,4 +1,4 @@
-const {flatMap} = require ('rxjs/operators')
+const {flatMap} = require('rxjs/operators')
 module.exports.merge = (db, f) => (source) => source.pipe(flatMap((object) => {
   const document = f(object)
   return db.put(document).catch((error) => {

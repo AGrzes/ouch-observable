@@ -9,7 +9,7 @@ describe('Ouch', function () {
         put: sinon.spy(() => Promise.resolve(null))
       }
       rx.of('a').pipe(sink(db)).subscribe({
-        complete() {
+        complete () {
           expect(db.put).to.have.been.called
           done()
         },
@@ -21,7 +21,7 @@ describe('Ouch', function () {
         put: sinon.spy(() => Promise.resolve(null))
       }
       rx.of('a', 'b').pipe(sink(db)).subscribe({
-        complete() {
+        complete () {
           expect(db.put).to.have.been.calledWith('a')
           expect(db.put).to.have.been.calledWith('b')
           done()
@@ -35,11 +35,11 @@ describe('Ouch', function () {
         put: sinon.spy(() => Promise.reject(error))
       }
       rx.of('a', 'b').pipe(sink(db)).subscribe({
-        error(err) {
+        error (err) {
           expect(err).to.be.equal(error)
           done()
         },
-        complete(){
+        complete () {
           expect.fail()
         }
       })

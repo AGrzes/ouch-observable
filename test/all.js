@@ -6,10 +6,10 @@ describe('Ouch', function () {
   describe('#all()', function () {
     it('should call allDocs', function (done) {
       const db = {
-        allDocs: sinon.spy(() => Promise.resolve({rows:[]}))
+        allDocs: sinon.spy(() => Promise.resolve({rows: []}))
       }
       all(db).subscribe({
-        complete() {
+        complete () {
           expect(db.allDocs).to.have.been.called
           done()
         },
@@ -19,11 +19,11 @@ describe('Ouch', function () {
 
     it('should call allDocs with include_docs', function (done) {
       const db = {
-        allDocs: sinon.spy(() => Promise.resolve({rows:[]}))
+        allDocs: sinon.spy(() => Promise.resolve({rows: []}))
       }
       all(db).subscribe({
-        complete() {
-          expect(db.allDocs).to.have.been.calledWithMatch((options)=>options && options.include_docs === true )
+        complete () {
+          expect(db.allDocs).to.have.been.calledWithMatch((options) => options && options.include_docs === true)
           done()
         },
         error: done
@@ -32,13 +32,13 @@ describe('Ouch', function () {
 
     it('should pass other options to all docs', function (done) {
       const db = {
-        allDocs: sinon.spy(() => Promise.resolve({rows:[]}))
+        allDocs: sinon.spy(() => Promise.resolve({rows: []}))
       }
-      all(db,{
+      all(db, {
         other: true
       }).subscribe({
-        complete() {
-          expect(db.allDocs).to.have.been.calledWithMatch((options)=>options && options.other === true )
+        complete () {
+          expect(db.allDocs).to.have.been.calledWithMatch((options) => options && options.other === true)
           done()
         },
         error: done
@@ -47,33 +47,33 @@ describe('Ouch', function () {
 
     it('should read rows', function (done) {
       const db = {
-        allDocs: sinon.spy(() => Promise.resolve({rows:[{
+        allDocs: sinon.spy(() => Promise.resolve({rows: [{
           doc: 'a'
-        },{
+        }, {
           doc: 'b'
         }]}))
       }
       all(db).pipe(toArray())
-      .subscribe({
-        next(rows) {
-          expect(rows).to.be.deep.equals(['a','b'])
-          done()
-        },
-        error: done
-      })
+        .subscribe({
+          next (rows) {
+            expect(rows).to.be.deep.equals(['a', 'b'])
+            done()
+          },
+          error: done
+        })
     })
     it('should handle error', function (done) {
-      const error =new Error()
+      const error = new Error()
       const db = {
         allDocs: sinon.spy(() => Promise.reject(error))
       }
-      all(db,{
+      all(db, {
         other: true
       }).subscribe({
-        complete() {
+        complete () {
           expect.fail()
         },
-        error: (err) =>{
+        error: (err) => {
           expect(err).to.be.equals(error)
           done()
         }
