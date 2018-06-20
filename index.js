@@ -1,7 +1,7 @@
-const all = require('./src/all')
-const view = require('./src/view')
-const merge = require('./src/merge')
-const sink = require('./src/sink')
+const {all} = require('./src/all')
+const {view} = require('./src/view')
+const {merge} = require('./src/merge')
+const {sink} = require('./src/sink')
 
 class Ouch {
   constructor (db) {
@@ -17,7 +17,7 @@ class Ouch {
     return all(this.db, options)
   }
   view (name, options) {
-    return all(this.db, name, options)
+    return view(this.db, name, options)
   }
 }
 module.exports.Ouch = Ouch
