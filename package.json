@@ -1,6 +1,6 @@
 {
   "name": "ouch-rx",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Reactive wrapper for pouchdb",
   "main": "index.js",
   "scripts": {
@@ -40,6 +40,7 @@
     "standard": "^11.0.1"
   },
   "dependencies": {
+    "lodash": "^4.17.10",
     "rxjs": "^6.2.1"
   }
 }
