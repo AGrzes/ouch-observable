@@ -4,6 +4,7 @@ const {merge} = require('./src/merge')
 const {sink} = require('./src/sink')
 const override = require('./src/override')
 const skip = require('./src/skip')
+const assign = require('./src/assign')
 
 class Ouch {
   constructor (db) {
@@ -25,5 +26,6 @@ class Ouch {
 module.exports = {
   Ouch,
   override,
-  skip
+  skip,
+  assign
 }
