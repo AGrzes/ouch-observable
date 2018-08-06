@@ -3,6 +3,7 @@ const {view} = require('./src/view')
 const {merge} = require('./src/merge')
 const {sink} = require('./src/sink')
 const override = require('./src/override')
+const skip = require('./src/skip')
 
 class Ouch {
   constructor (db) {
@@ -23,5 +24,6 @@ class Ouch {
 }
 module.exports = {
   Ouch,
-  override
+  override,
+  skip
 }
