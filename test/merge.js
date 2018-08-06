@@ -143,5 +143,25 @@ describe('Ouch', function () {
         error: done
       })
     })
+
+    it('should skip merge when merge result is null', function (done) {
+      var object = {
+        _id: 'a'
+      }
+      var f = sinon.spy((x, y) => y ? null : 'merge')
+      var error = new Error()
+      error.name = 'conflict'
+      var db = {
+        put: sinon.stub().onFirstCall().returns(Promise.reject(error)).onSecondCall().returns(Promise.resolve()),
+        get: sinon.spy(() => Promise.resolve('b'))
+      }
+      rx.of(object).pipe(merge(db, f)).subscribe({
+        complete () {
+          expect(db.put).to.have.been.calledOnce
+          done()
+        },
+        error: done
+      })
+    })
   })
 })
