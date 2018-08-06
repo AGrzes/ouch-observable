@@ -7,8 +7,8 @@ const rx = require('rxjs')
 describe('Ouch', function () {
   describe('#merge()', function () {
     it('should call put', function (done) {
-      var f = sinon.spy((x) => x)
-      var db = {
+      const f = sinon.spy((x) => x)
+      const db = {
         put: sinon.spy(() => Promise.resolve(null))
       }
       rx.of('a').pipe(merge(db, f)).subscribe({
@@ -20,8 +20,8 @@ describe('Ouch', function () {
       })
     })
     it('should pass items to put', function (done) {
-      var f = sinon.spy((x) => x)
-      var db = {
+      const f = sinon.spy((x) => x)
+      const db = {
         put: sinon.spy(() => Promise.resolve(null))
       }
       rx.of('a', 'b').pipe(merge(db, f)).subscribe({
@@ -34,8 +34,8 @@ describe('Ouch', function () {
       })
     })
     it('should pass items to provided function', function (done) {
-      var f = sinon.spy((x) => x)
-      var db = {
+      const f = sinon.spy((x) => x)
+      const db = {
         put: sinon.spy(() => Promise.resolve(null))
       }
       rx.of('a', 'b').pipe(merge(db, f)).subscribe({
@@ -49,9 +49,9 @@ describe('Ouch', function () {
     })
 
     it('should fail when put failed', function (done) {
-      var f = sinon.spy((x) => x)
-      var error = new Error()
-      var db = {
+      const f = sinon.spy((x) => x)
+      const error = new Error()
+      const db = {
         put: sinon.spy(() => Promise.reject(error))
       }
       rx.of('a', 'b').pipe(merge(db, f)).subscribe({
@@ -66,13 +66,13 @@ describe('Ouch', function () {
     })
 
     it('should call get when got update conflict', function (done) {
-      var object = {
+      const object = {
         _id: 'a'
       }
-      var f = sinon.spy((x) => x)
-      var error = new Error()
+      const f = sinon.spy((x) => x)
+      const error = new Error()
       error.name = 'conflict'
-      var db = {
+      const db = {
         put: sinon.stub().onFirstCall().returns(Promise.reject(error)).onSecondCall().returns(Promise.resolve()),
         get: sinon.spy(() => Promise.resolve(object))
       }
@@ -86,13 +86,13 @@ describe('Ouch', function () {
     })
 
     it('should pass id to get when got update conflict', function (done) {
-      var object = {
+      const object = {
         _id: 'a'
       }
-      var f = sinon.spy((x) => x)
-      var error = new Error()
+      const f = sinon.spy((x) => x)
+      const error = new Error()
       error.name = 'conflict'
-      var db = {
+      const db = {
         put: sinon.stub().onFirstCall().returns(Promise.reject(error)).onSecondCall().returns(Promise.resolve()),
         get: sinon.spy(() => Promise.resolve(object))
       }
@@ -105,13 +105,13 @@ describe('Ouch', function () {
       })
     })
     it('should merge get result when got update conflict', function (done) {
-      var object = {
+      const object = {
         _id: 'a'
       }
-      var f = sinon.spy((x) => x)
-      var error = new Error()
+      const f = sinon.spy((x) => x)
+      const error = new Error()
       error.name = 'conflict'
-      var db = {
+      const db = {
         put: sinon.stub().onFirstCall().returns(Promise.reject(error)).onSecondCall().returns(Promise.resolve()),
         get: sinon.spy(() => Promise.resolve('b'))
       }
@@ -125,13 +125,13 @@ describe('Ouch', function () {
     })
 
     it('should put merge result when got update conflict', function (done) {
-      var object = {
+      const object = {
         _id: 'a'
       }
-      var f = sinon.spy((x) => 'merge')
-      var error = new Error()
+      const f = sinon.spy((x) => 'merge')
+      const error = new Error()
       error.name = 'conflict'
-      var db = {
+      const db = {
         put: sinon.stub().onFirstCall().returns(Promise.reject(error)).onSecondCall().returns(Promise.resolve()),
         get: sinon.spy(() => Promise.resolve('b'))
       }
@@ -145,13 +145,13 @@ describe('Ouch', function () {
     })
 
     it('should skip merge when merge result is null', function (done) {
-      var object = {
+      const object = {
         _id: 'a'
       }
-      var f = sinon.spy((x, y) => y ? null : 'merge')
-      var error = new Error()
+      const f = sinon.spy((x, y) => y ? null : 'merge')
+      const error = new Error()
       error.name = 'conflict'
-      var db = {
+      const db = {
         put: sinon.stub().onFirstCall().returns(Promise.reject(error)).onSecondCall().returns(Promise.resolve()),
         get: sinon.spy(() => Promise.resolve('b'))
       }
