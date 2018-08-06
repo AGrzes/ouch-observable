@@ -5,7 +5,7 @@ const rx = require('rxjs')
 describe('Ouch', function () {
   describe('#sink()', function () {
     it('should call put', function (done) {
-      var db = {
+      const db = {
         put: sinon.spy(() => Promise.resolve(null))
       }
       rx.of('a').pipe(sink(db)).subscribe({
@@ -17,7 +17,7 @@ describe('Ouch', function () {
       })
     })
     it('should pass items to put', function (done) {
-      var db = {
+      const db = {
         put: sinon.spy(() => Promise.resolve(null))
       }
       rx.of('a', 'b').pipe(sink(db)).subscribe({
@@ -30,8 +30,8 @@ describe('Ouch', function () {
       })
     })
     it('should continue when put failed', function (done) {
-      var error = new Error()
-      var db = {
+      const error = new Error()
+      const db = {
         put: sinon.spy(() => Promise.reject(error))
       }
       rx.of('a', 'b').pipe(sink(db)).subscribe({
