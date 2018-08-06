@@ -2,6 +2,7 @@ const {all} = require('./src/all')
 const {view} = require('./src/view')
 const {merge} = require('./src/merge')
 const {sink} = require('./src/sink')
+const override = require('./src/override')
 
 class Ouch {
   constructor (db) {
@@ -20,4 +21,7 @@ class Ouch {
     return view(this.db, name, options)
   }
 }
-module.exports.Ouch = Ouch
+module.exports = {
+  Ouch,
+  override
+}
