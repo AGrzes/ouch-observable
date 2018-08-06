@@ -2,6 +2,7 @@ const {all} = require('./src/all')
 const {view} = require('./src/view')
 const {merge} = require('./src/merge')
 const {sink} = require('./src/sink')
+const {changes} = require('./src/changes')
 const override = require('./src/override')
 const skip = require('./src/skip')
 const assign = require('./src/assign')
@@ -18,6 +19,9 @@ class Ouch {
   }
   all (options) {
     return all(this.db, options)
+  }
+  changes (options) {
+    return changes(this.db, options)
   }
   view (name, options) {
     return view(this.db, name, options)
