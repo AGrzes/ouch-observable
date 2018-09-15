@@ -69,7 +69,7 @@ describe('Ouch', function () {
       changes(db).pipe(toArray())
         .subscribe({
           next (rows) {
-            expect(rows).to.be.deep.equals(['a', 'b'])
+            expect(rows).to.be.deep.equals([{ doc: 'a' }, { doc: 'b' }])
             done()
           },
           error: done
