@@ -9,7 +9,7 @@ export declare class Ouch<Content> {
   public sink<Model>(): OperatorFunction<Model & Content,any>
   public merge<Model>(mergeFunction: MergeFunction<Model,Content>): OperatorFunction<Model & Content,PouchDB.Core.ExistingDocument<Model & Content>>
   public all<Model>(options?: PouchDB.Core.AllDocsWithKeyOptions | PouchDB.Core.AllDocsWithKeysOptions |
-    PouchDB.Core.AllDocsWithinRangeOptions | PouchDB.Core.AllDocsOptions): Observable<Model & Content>
+    PouchDB.Core.AllDocsWithinRangeOptions | PouchDB.Core.AllDocsOptions): Observable<PouchDB.Core.ExistingDocument<Model & Content>>
   public changes<Model>(options?: PouchDB.Core.ChangesOptions): Observable<PouchDB.Core.ChangesResponseChange<Model & Content>>
   public view<Model,Result>(name: string, options?: PouchDB.Query.Options<Content,Result>): Observable<Model & Content>
 }
