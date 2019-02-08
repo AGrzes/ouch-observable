@@ -17,3 +17,9 @@ export declare class Ouch<Content> {
 export const override: MergeFunction<any,any>
 export const skip: MergeFunction<any,any>
 export const assign: MergeFunction<any,any>
+export function sink<Model, Content>(db: PouchDB.Database<Content>): OperatorFunction<Model & Content,any>
+export function merge<Model, Content>(db: PouchDB.Database<Content>, mergeFunction: MergeFunction<Model,Content>): OperatorFunction<Model & Content,PouchDB.Core.ExistingDocument<Model & Content>>
+export function all<Model, Content>(db: PouchDB.Database<Content>, options?: PouchDB.Core.AllDocsWithKeyOptions | PouchDB.Core.AllDocsWithKeysOptions |
+  PouchDB.Core.AllDocsWithinRangeOptions | PouchDB.Core.AllDocsOptions): Observable<PouchDB.Core.ExistingDocument<Model & Content>>
+export function changes<Model, Content>(db: PouchDB.Database<Content>, options?: PouchDB.Core.ChangesOptions): Observable<PouchDB.Core.ChangesResponseChange<Model & Content>>
+export function view<Model, Content, Result>(db: PouchDB.Database<Content>, name: string, options?: PouchDB.Query.Options<Content,Result>): Observable<Model & Content>

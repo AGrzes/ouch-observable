@@ -31,5 +31,10 @@ module.exports = {
   Ouch,
   override,
   skip,
-  assign
+  assign,
+  sink,
+  merge,
+  all,
+  changes,
+  view
 }
