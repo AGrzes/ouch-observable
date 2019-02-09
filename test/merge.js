@@ -163,5 +163,25 @@ describe('Ouch', function () {
         error: done
       })
     })
+
+    it('should skip merge when merge result is the same as existing document', function (done) {
+      const object = {
+        _id: 'a'
+      }
+      const f = sinon.spy((x, y) => y ? 'b' : 'merge')
+      const error = new Error()
+      error.name = 'conflict'
+      const db = {
+        put: sinon.stub().onFirstCall().returns(Promise.reject(error)).onSecondCall().returns(Promise.resolve()),
+        get: sinon.spy(() => Promise.resolve('b'))
+      }
+      rx.of(object).pipe(merge(db, f)).subscribe({
+        complete () {
+          expect(db.put).to.have.been.calledOnce
+          done()
+        },
+        error: done
+      })
+    })
   })
 })
