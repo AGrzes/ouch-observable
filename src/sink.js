@@ -1,2 +1,9 @@
 const {flatMap} = require('rxjs/operators')
-module.exports.sink = (db) => (source) => source.pipe(flatMap((document) => db.put(document)))
+const log = require('debug')('ouch-rx:sink')
+module.exports.sink = (db) => (source) => {
+  log('Called')
+  return source.pipe(flatMap((document) => {
+    log('Saving %o', document)
+    return db.put(document)
+  }))
+}
