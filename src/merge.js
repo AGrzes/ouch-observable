@@ -8,7 +8,7 @@ module.exports.merge = (db, f) => (source) => source.pipe(flatMap((object) => {
   return db.put(document).catch((error) => {
     if (error.name === 'conflict') {
       return db.get(document._id).then((existing) => {
-        log('Merging %o and %o', error)
+        log('Merging %o and %o', object, existing)
         const merged = f(object, existing)
         log('Merged %o', merged)
         const save = merged && !isEqual(merged, existing)
