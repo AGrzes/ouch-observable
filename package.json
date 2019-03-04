@@ -4,7 +4,7 @@
   "description": "Reactive wrapper for pouchdb",
   "main": "index.js",
   "scripts": {
-    "test": "nyc --reporter=html --reporter=text mocha --recursive",
+    "test": "nyc --reporter=html --reporter=text --reporter=lcov mocha --recursive",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "lint": "eslint src test",
     "fix": "eslint --fix src test"
